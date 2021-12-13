@@ -1,9 +1,9 @@
 # Isletim-Sistemleri-Projesi-36.Grup
-2021-2022 Güz dönemi İşletim Sistemleri Dersi Proje Ödevi
+**2021-2022 Güz dönemi İşletim Sistemleri Dersi Proje Ödevi**
 
-@Grup Numarası : 36
+**@Grup Numarası : 36**
 
-@Grup Üyeleri: 3.Sınıf 2/B
+**@Grup Üyeleri: 3.Sınıf 2/B**
 
 	G191210017 Raif AKYOL
 	
@@ -15,27 +15,27 @@
 	
 	G191210011 Emir Can OLĞAÇ
 
-@Dosya Listesi
+**@Dosya Listesi**
 
 	shell.c:İlgili programı çalıştıran ve fonksiyon gövdelerini barındıran çalıştırılabilir program.
 	
 	shell.h:Programın kütüphane dosyalarını,başlıklarını ve fonksiyon protoiplerini barındırır.
 
-@Programın derlenmesi
+**@Programın derlenmesi**
 
-	: Program ubuntuda "make" komutu yazılması ile başlamaktadır.
+	 Program ubuntuda "make" komutu yazılması ile başlamaktadır.
 
-@Karşılaşılan Zorluklar
+**@Karşılaşılan Zorluklar**
 
-	: execvp fonksiyonuna komutun ve parametresinin yüklenmesi
+	 execvp fonksiyonuna komutun ve parametresinin yüklenmesi
 	
-	: showpid fonksiyonunun icra mantığı 
+	 showpid fonksiyonunun icra mantığı 
 	
-	: Hata ayıklama ve düzeltme
+	 Hata ayıklama ve düzeltme
 	
-	: Kabuk programının devasa gücü ve bunun kapsamının projede istenen mantıkda daraltılması.
+	 Kabuk programının devasa gücü ve bunun kapsamının projede istenen mantıkda daraltılması.
 
-@Kullanılan Kaynaklar
+**@Kullanılan Kaynaklar**
 
 	Ubuntu man sayfaları
 	
