@@ -17,9 +17,9 @@
 
 **@Dosya Listesi**
 
-	shell.c:İlgili programı çalıştıran ve fonksiyon gövdelerini barındıran çalıştırılabilir program.
+	shell.c: İlgili programı çalıştıran ve fonksiyon gövdelerini barındıran çalıştırılabilir program.
 	
-	shell.h:Programın kütüphane dosyalarını,başlıklarını ve fonksiyon protoiplerini barındırır.
+	shell.h: Programın kütüphane dosyalarını,başlıklarını ve fonksiyon protoiplerini barındırır.
 
 **@Programın derlenmesi**
 
@@ -27,11 +27,11 @@
 
 **@Karşılaşılan Zorluklar**
 
-	 execvp fonksiyonuna komutun ve parametresinin yüklenmesi
+	 execvp fonksiyonuna komutun ve parametresinin yüklenmesi.
 	
-	 showpid fonksiyonunun icra mantığı 
+	 showpid fonksiyonunun icra mantığı .
 	
-	 Hata ayıklama ve düzeltme
+	 Hata ayıklama ve düzeltme.
 	
 	 Kabuk programının devasa gücü ve bunun kapsamının projede istenen mantıkda daraltılması.
 
