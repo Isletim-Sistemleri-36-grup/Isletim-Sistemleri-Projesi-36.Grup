@@ -4,6 +4,7 @@
 @Grup Numarası : 36
 
 @Grup Üyeleri:3.Sınıf 2/B
+
 	G191210017 Raif AKYOL
 	
 	G191210101 Muhammet Enes VARDAR	
