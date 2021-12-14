@@ -23,7 +23,7 @@ static int ProcessCount=0;
 
 char *read_line(); //Girilen satırı okuyan ve döndüren fonksiyon
 char **split_line(char *);//kendisine gönderilen satırı ayırıcı karakterlere göre ayırıp bunları döndüren,argümanları tutan fonksiyon
-
+int execute(char **);//kendisine gönderilen argümanlar doğrultusunda yapması gereken işleri tamamlayan fonksiyon
 
 
 
