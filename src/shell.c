@@ -40,6 +40,41 @@
 
 #include "shell.h"
 
+
+
+
+char **split_line(char * line) { //kendisine gönderilen satır parametresini parçalayan,bölen ve bu parçaları döndüren fonksiyon
+	int buffsize = TK_BUFF_SIZE, position = 0; //
+	char **tokens = malloc(buffsize * sizeof(char *));//parçalar için ek bir bellek alanı oluşturuldu 
+	char *token;
+
+  if (!tokens) {//eğer  parçalar için oluşturulan ek bellek alanında sıkıntı varsa hata döndürüldü ve fonksiyon başarısız olarak sonlandırıldı.
+    fprintf(stderr, "%sAllocation error%s\n", RED, reset);
+    exit(EXIT_FAILURE);
+  }
+  
+  token = strtok(line, TOKEN_DELIM); //burada strtok fonksiyonu ile satırlar ilgili ayırıcı karakterlere bölümlendirildi.
+									 //her ayırıcı karakter bölümünü NULL'ile sonlandırıp strtok fonksiyonunu besledik.
+  while (token != NULL) {			//daha böldüğü satırları döndürecek
+    tokens[position] = token;
+    position++;
+
+    if (position >= buffsize) {
+      buffsize += TK_BUFF_SIZE;
+      tokens = realloc(tokens, buffsize * sizeof(char * ));
+
+      if (!tokens) {
+        fprintf(stderr, "%sAllocation error%s\n", RED, reset);
+        exit(EXIT_FAILURE);
+      }
+    }
+    token = strtok(NULL, TOKEN_DELIM);
+  }
+  tokens[position] = NULL;
+
+  return tokens;
+}
+
 char *read_line() {  //shell'den girilen satırın okuma işlemini gerçekleştiriyor.
   int buffsize = BUFF_SIZE;
   int position = 0;
