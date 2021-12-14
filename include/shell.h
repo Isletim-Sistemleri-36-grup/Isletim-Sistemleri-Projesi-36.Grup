@@ -17,6 +17,9 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+static char* currentPath;//Mevcut çalışma dizinini tutuyor
+static int lineLength=0;
+static int ProcessCount=0;
 
 
 #endif
