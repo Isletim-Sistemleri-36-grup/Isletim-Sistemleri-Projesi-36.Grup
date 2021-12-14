@@ -24,6 +24,11 @@ static int ProcessCount=0;
 char *read_line(); //Girilen satırı okuyan ve döndüren fonksiyon
 char **split_line(char *);//kendisine gönderilen satırı ayırıcı karakterlere göre ayırıp bunları döndüren,argümanları tutan fonksiyon
 int execute(char **);//kendisine gönderilen argümanlar doğrultusunda yapması gereken işleri tamamlayan fonksiyon
+int builtin_exit( );//Shell'den çıkmayı sağlayan fonksiyon
+int *process;
+int showpid();
+int builtin_cd(char **args);
+int builtin_help();
 
 
 
