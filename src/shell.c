@@ -59,7 +59,7 @@ int builtin_help() //Kullanıcı shell'e help yazdığında çalışacak olan fo
 {
 	
 		fprintf(stderr,"\n*******************\n"
-				"Supported Commands:\n1. showpid\n2. help\n3. cd\n4.exit"
+				"Supported Commands:\n1. showpid\n2. help\n3. cd\n4. exit"
 				"\n*******************\n\n");	
 	return 1;
 }
