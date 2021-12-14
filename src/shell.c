@@ -196,3 +196,9 @@ void Prompt()//Kullanıcının girmesi gereken komutlara yol gösteren ve girdiy
 
 
 }
+
+void Entry(){//Girişte kullanıcıya sunulan karşılama mesajını gösteren fonksiyon
+	printf("\n%s **************************************%s ",YEL,reset);
+	printf("\n %s***%s %s      WELCOME%s %sTO%s %sOUR%s %sSHELL%s     %s***%s\n ",YEL,reset,RED,reset,MAG,reset,YEL,reset,BLU,reset,YEL,reset);
+	printf("%s**************************************%s\n\n ",YEL,reset);
+}
