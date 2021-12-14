@@ -98,3 +98,28 @@ char *read_line() {  //shell'den girilen satırın okuma işlemini gerçekleşti
 	lineLength++;   
   }
 }
+
+int execute(char **args) { //kendisini gönderilen parametreleri işleyen  fonksiyon
+  int cpid;
+  int status;
+
+  cpid = fork(); //Ebevyn process fork ile kendi kopyasını oluşturmuş oldu
+  
+  if (cpid == 0) {//Eğer oluşturulmış processin fork değeri 0'a eşitse bu yavru processtir.
+    if (execvp(args[0], args) < 0)//gönderilen argümanların ilki her zaman komutu barındırdığından dizinin ilk elemanı ve argümanları olarak execvp'ye gönderildi
+	{
+		printf("%sCommand not found: %s", RED, reset);//eğer fonksiyon sonucu 0'dan küçük ise böyle bir komutun olmadığı ifade edildi.
+		printf("%s\n", args[0]);
+	}
+    exit(EXIT_FAILURE); //ve execute fonksiyonu başarısız olarak sonlandırıldı.
+
+  } else if (cpid < 0)//eğer oluşturulmuş process'in fork değeri 0'dan küçük ise fork işlenirken hata oluşmuş demektir 
+    printf(RED "Error forking"
+      reset "\n");
+   else { //burada oluşturulmuş yavru processlerin id'leri bir process dizisinde tutuldu.Showpid kısmında listelenmesi adına
+	  process[ProcessCount]=cpid;
+    waitpid(cpid, & status, WUNTRACED);//zombi processlerin oluşmasını engellemek adına ebevyn'in yavrunun sonlanması anına kadar bekletilmesi işlemi gerçekleştirildi.
+  }
+  ProcessCount++;
+  return 1;
+}
