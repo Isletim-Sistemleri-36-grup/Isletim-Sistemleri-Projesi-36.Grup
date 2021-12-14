@@ -22,5 +22,9 @@ static int lineLength=0;
 static int ProcessCount=0;
 
 char *read_line(); //Girilen satırı okuyan ve döndüren fonksiyon
+char **split_line(char *);//kendisine gönderilen satırı ayırıcı karakterlere göre ayırıp bunları döndüren,argümanları tutan fonksiyon
+
+
+
 
 #endif
