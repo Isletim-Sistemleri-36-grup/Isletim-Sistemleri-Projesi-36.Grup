@@ -32,6 +32,6 @@ int builtin_help();
 int args_length(char **args);
 void Prompt();
 void Entry();
-
+void loop();//Shell'in sürekliliğini sağlayan döngüyü barındıran fonksiyon
 
 #endif
