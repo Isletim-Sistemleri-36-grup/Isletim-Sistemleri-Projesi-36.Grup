@@ -174,3 +174,14 @@ int execute(char **args) { //kendisini gönderilen parametreleri işleyen  fonks
   ProcessCount++;
   return 1;
 }
+
+int args_length(char **args)//Kullanıcının girmiş olduğu argüman sayısını hesaplayan fonksiyon
+{
+	int i = 0;
+
+	while(args[i] != NULL)
+	{
+		i++;
+	}
+	return i;
+}
