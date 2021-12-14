@@ -31,6 +31,7 @@ int builtin_cd(char **args);
 int builtin_help();
 int args_length(char **args);
 void Prompt();
+void Entry();
 
 
 #endif
