@@ -41,7 +41,45 @@
 #include "shell.h"
 
 
+int showpid(){ //Execute satırında her forklanmadan sonra oluşturulan (yani kabuk tarafından üretilmiş) processlerin id'lerini göstermekte
+	printf("\n%s**************************************************%s\n",YEL,reset);
+	printf(" %s processes created by shell %s\n", BLU,reset);
+	//printf("%d",Shellpid);
+	for(int i=0;i<ProcessCount;i++) 
+	 printf("%d-) %d\n",i+1,process[i]);
+ 	printf("\n%s**************************************************%s\n",YEL,reset);
+		return 1;
+		 
+}
 
+int builtin_exit() { //kullanıcı shell'e exit yazdığında çıkış sağlanacak
+	printf("%sFile was closed by user request with Exit command%s\n", RED, reset);
+  return 0;
+}
+
+int builtin_help() //kullanıcı shell'e help yazdığında çalışacak olan fonksiyon , built-in komutları listelemekte
+{
+	
+		fprintf(stderr,"\n*******************\n"
+				"Supported Commands:\n1. showpid\n2. help\n3. cd\n4.exit"
+				"\n*******************\n\n");	
+	return 1;
+}
+int builtin_cd(char **args)//kullanıcı shell'e cd yazdığında ilgili kontroller sağlandıktan sonra mevcut konumunu değiştirmesi sağlandı.
+{
+	if(args[1] == NULL)
+	{
+		fprintf(stderr, "%sPlease enter a path to cd%s\n", RED, reset);
+	}
+	else
+	{
+		if(chdir(args[1]) > 0)//Dizin değiştirme "chdir" fonksiyonu ile yapıldı
+		{
+			perror("ERROR\n");			
+		}
+	}
+	return 1;
+}
 
 char **split_line(char * line) { //kendisine gönderilen satır parametresini parçalayan,bölen ve bu parçaları döndüren fonksiyon
 	int buffsize = TK_BUFF_SIZE, position = 0; //
@@ -102,7 +140,20 @@ char *read_line() {  //shell'den girilen satırın okuma işlemini gerçekleşti
 int execute(char **args) { //kendisini gönderilen parametreleri işleyen  fonksiyon
   int cpid;
   int status;
-
+	//**Builtin kısmı
+  if (strcmp(args[0], "exit") == 0||atoi(args[0])==4) {
+    return builtin_exit();
+  }
+    else if (strcmp(args[0], "cd") == 0||atoi(args[0])==3) {
+    return builtin_cd(args);
+  }
+    else if (strcmp(args[0], "help") == 0||atoi(args[0])==2) {
+    return builtin_help();
+  }
+   else if (strcmp(args[0], "showpid") == 0) {
+	  return showpid(); 
+	}
+//*****
   cpid = fork(); //Ebevyn process fork ile kendi kopyasını oluşturmuş oldu
   
   if (cpid == 0) {//Eğer oluşturulmış processin fork değeri 0'a eşitse bu yavru processtir.
