@@ -185,3 +185,14 @@ int args_length(char **args)//Kullanıcının girmiş olduğu argüman sayısın
 	}
 	return i;
 }
+
+void Prompt()//Kullanıcının girmesi gereken komutlara yol gösteren ve girdiye hazır olduğunu ifade eden fonksiyon
+{
+
+//-------------------show the path-----------------------------
+
+   char path[1024]="";
+   printf(MAG "%s/: sau > "reset ,getcwd(currentPath,1024)  );
+
+
+}
