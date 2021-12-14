@@ -21,5 +21,6 @@ static char* currentPath;//Mevcut çalışma dizinini tutuyor
 static int lineLength=0;
 static int ProcessCount=0;
 
+char *read_line(); //Girilen satırı okuyan ve döndüren fonksiyon
 
 #endif
