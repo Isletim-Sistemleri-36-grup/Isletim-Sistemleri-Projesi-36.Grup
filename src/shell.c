@@ -11,7 +11,6 @@
 //@Teslim tarihi
 	//14.12.2021
 
-
 //**************************************************************
 
 #include <stdio.h> 
@@ -40,7 +39,6 @@
 
 #include "shell.h"
 
-
 int showpid(){ //Execute satırında her forklanmadan sonra oluşturulan (yani kabuk tarafından üretilmiş) processlerin id'lerini göstermekte
 	printf("\n%s**************************************************%s\n",YEL,reset);
 	printf(" %s processes created by shell %s\n", BLU,reset);
@@ -52,12 +50,12 @@ int showpid(){ //Execute satırında her forklanmadan sonra oluşturulan (yani k
 		 
 }
 
-int builtin_exit() { //kullanıcı shell'e exit yazdığında çıkış sağlanacak
+int builtin_exit() { //Kullanıcı shell'e exit yazdığında çıkış sağlanacak
 	printf("%sFile was closed by user request with Exit command%s\n", RED, reset);
   return 0;
 }
 
-int builtin_help() //kullanıcı shell'e help yazdığında çalışacak olan fonksiyon , built-in komutları listelemekte
+int builtin_help() //Kullanıcı shell'e help yazdığında çalışacak olan fonksiyon , built-in komutları listelemekte
 {
 	
 		fprintf(stderr,"\n*******************\n"
@@ -65,7 +63,8 @@ int builtin_help() //kullanıcı shell'e help yazdığında çalışacak olan fo
 				"\n*******************\n\n");	
 	return 1;
 }
-int builtin_cd(char **args)//kullanıcı shell'e cd yazdığında ilgili kontroller sağlandıktan sonra mevcut konumunu değiştirmesi sağlandı.
+
+int builtin_cd(char **args)//Kullanıcı shell'e cd yazdığında ilgili kontroller sağlandıktan sonra mevcut konumunu değiştirmesi sağlandı.
 {
 	if(args[1] == NULL)
 	{
@@ -81,19 +80,19 @@ int builtin_cd(char **args)//kullanıcı shell'e cd yazdığında ilgili kontrol
 	return 1;
 }
 
-char **split_line(char * line) { //kendisine gönderilen satır parametresini parçalayan,bölen ve bu parçaları döndüren fonksiyon
+char **split_line(char * line) { //Kendisine gönderilen satır parametresini parçalayan,bölen ve bu parçaları döndüren fonksiyon
 	int buffsize = TK_BUFF_SIZE, position = 0; //
-	char **tokens = malloc(buffsize * sizeof(char *));//parçalar için ek bir bellek alanı oluşturuldu 
+	char **tokens = malloc(buffsize * sizeof(char *));//Parçalar için ek bir bellek alanı oluşturuldu 
 	char *token;
 
-  if (!tokens) {//eğer  parçalar için oluşturulan ek bellek alanında sıkıntı varsa hata döndürüldü ve fonksiyon başarısız olarak sonlandırıldı.
+  if (!tokens) {//Eğer  parçalar için oluşturulan ek bellek alanında sıkıntı varsa hata döndürüldü ve fonksiyon başarısız olarak sonlandırıldı.
     fprintf(stderr, "%sAllocation error%s\n", RED, reset);
     exit(EXIT_FAILURE);
   }
   
-  token = strtok(line, TOKEN_DELIM); //burada strtok fonksiyonu ile satırlar ilgili ayırıcı karakterlere bölümlendirildi.
-									 //her ayırıcı karakter bölümünü NULL'ile sonlandırıp strtok fonksiyonunu besledik.
-  while (token != NULL) {			//daha böldüğü satırları döndürecek
+  token = strtok(line, TOKEN_DELIM); //Burada strtok fonksiyonu ile satırlar ilgili ayırıcı karakterlere bölümlendirildi.
+									 //Her ayırıcı karakter bölümünü NULL'ile sonlandırıp strtok fonksiyonunu besledik.
+  while (token != NULL) {			//Daha böldüğü satırları döndürecek
     tokens[position] = token;
     position++;
 
@@ -113,18 +112,18 @@ char **split_line(char * line) { //kendisine gönderilen satır parametresini pa
   return tokens;
 }
 
-char *read_line() {  //shell'den girilen satırın okuma işlemini gerçekleştiriyor.
+char *read_line() {  //Shell'den girilen satırın okuma işlemini gerçekleştiriyor.
   int buffsize = BUFF_SIZE;
   int position = 0;
-  char *buffer = malloc(sizeof(char) * buffsize); //satırı dinamik bir bellek bölgesi ayırdık
+  char *buffer = malloc(sizeof(char) * buffsize); //Satırı dinamik bir bellek bölgesi ayırdık
   int c;
  
-  if (!buffer) { //yer ayrılmadıysa hata döndür
+  if (!buffer) { //Yer ayrılmadıysa hata döndür
     fprintf(stderr, "%sAllocation error%s\n", RED, reset);
     exit(EXIT_FAILURE);
   }
 
-  while (1) { //her bir satırı oku ve belirli karakterlere geldiğinde \0 ekle ve bu satırı döndür
+  while (1) { //Her bir satırı oku ve belirli karakterlere geldiğinde \0 ekle ve bu satırı döndür
     c = getchar();
     if (c == EOF || c == '\n') {
       buffer[position] = '\0';
@@ -137,7 +136,7 @@ char *read_line() {  //shell'den girilen satırın okuma işlemini gerçekleşti
   }
 }
 
-int execute(char **args) { //kendisini gönderilen parametreleri işleyen  fonksiyon
+int execute(char **args) { //Kendisini gönderilen parametreleri işleyen  fonksiyon
   int cpid;
   int status;
 	//**Builtin kısmı
@@ -157,19 +156,19 @@ int execute(char **args) { //kendisini gönderilen parametreleri işleyen  fonks
   cpid = fork(); //Ebevyn process fork ile kendi kopyasını oluşturmuş oldu
   
   if (cpid == 0) {//Eğer oluşturulmış processin fork değeri 0'a eşitse bu yavru processtir.
-    if (execvp(args[0], args) < 0)//gönderilen argümanların ilki her zaman komutu barındırdığından dizinin ilk elemanı ve argümanları olarak execvp'ye gönderildi
+    if (execvp(args[0], args) < 0)//Gönderilen argümanların ilki her zaman komutu barındırdığından dizinin ilk elemanı ve argümanları olarak execvp'ye gönderildi
 	{
-		printf("%sCommand not found: %s", RED, reset);//eğer fonksiyon sonucu 0'dan küçük ise böyle bir komutun olmadığı ifade edildi.
+		printf("%sCommand not found: %s", RED, reset);//Eğer fonksiyon sonucu 0'dan küçük ise böyle bir komutun olmadığı ifade edildi.
 		printf("%s\n", args[0]);
 	}
-    exit(EXIT_FAILURE); //ve execute fonksiyonu başarısız olarak sonlandırıldı.
+    exit(EXIT_FAILURE); //Ve execute fonksiyonu başarısız olarak sonlandırıldı.
 
-  } else if (cpid < 0)//eğer oluşturulmuş process'in fork değeri 0'dan küçük ise fork işlenirken hata oluşmuş demektir 
+  } else if (cpid < 0)//Eğer oluşturulmuş process'in fork değeri 0'dan küçük ise fork işlenirken hata oluşmuş demektir 
     printf(RED "Error forking"
       reset "\n");
-   else { //burada oluşturulmuş yavru processlerin id'leri bir process dizisinde tutuldu.Showpid kısmında listelenmesi adına
+   else { //Burada oluşturulmuş yavru processlerin id'leri bir process dizisinde tutuldu.Showpid kısmında listelenmesi adına
 	  process[ProcessCount]=cpid;
-    waitpid(cpid, & status, WUNTRACED);//zombi processlerin oluşmasını engellemek adına ebevyn'in yavrunun sonlanması anına kadar bekletilmesi işlemi gerçekleştirildi.
+    waitpid(cpid, & status, WUNTRACED);//Zombi processlerin oluşmasını engellemek adına ebevyn'in yavrunun sonlanması anına kadar bekletilmesi işlemi gerçekleştirildi.
   }
   ProcessCount++;
   return 1;
@@ -193,12 +192,57 @@ void Prompt()//Kullanıcının girmesi gereken komutlara yol gösteren ve girdiy
 
    char path[1024]="";
    printf(MAG "%s/: sau > "reset ,getcwd(currentPath,1024)  );
-
-
 }
 
 void Entry(){//Girişte kullanıcıya sunulan karşılama mesajını gösteren fonksiyon
 	printf("\n%s **************************************%s ",YEL,reset);
 	printf("\n %s***%s %s      WELCOME%s %sTO%s %sOUR%s %sSHELL%s     %s***%s\n ",YEL,reset,RED,reset,MAG,reset,YEL,reset,BLU,reset,YEL,reset);
 	printf("%s**************************************%s\n\n ",YEL,reset);
+}
+
+void loop() { //Shell'in sürekliliğini döngüsel olarak sağlayan fonksiyon
+  char *line;
+  char **args;
+  int status = 1;
+  int length;
+ 
+	process=malloc(processnumber*sizeof(int)); //Showpid' işleminde processlerin pid'leri tutan dizi
+	
+	if( process == NULL)
+    fprintf(stdout, "Hata olustu");
+
+	Entry(); //Karşılama mesajı verildi.
+   do {//döngü başladı
+	lineLength=0;
+	    Prompt(); //Prompt çalıştırıldı
+
+    line = read_line(); //Satır okundu
+	if(lineLength<80){//Okunan satırın 80 karakterden büyük olması engellendi ve hata mesajı verildi
+		
+		args = split_line(line); //Satır parçalandı ve argümanlar args'ye atandı.
+		length=args_length(args);//Argümanların sayısı öğrenildi
+		
+		
+		if(length>9){ //Eğer argüman sayısı 9'dan büyük ise bu durumda argüman sayısının fazlalığından dolayı hata mesajı verildi
+			fprintf(stderr, "%sTo many Arguments%s\n", RED, reset);
+		}
+		else{
+			status = execute(args);//Son durumda eldeki argümanlar çalıştırılmak üzere fonskiyona yönlendirildi.
+		}
+		 
+		free(line);//Oluşturulmuş bellek bölgeleri serbest bırakıldı çöp oluşmaması sağlandı
+		free(args); 				
+	}
+	else{
+		
+		fprintf(stderr, "%sCharacter limit exceeded, Command line cannot exceed  * 80 *  characters  %s\n", RED, reset);
+	}  
+   } while (status); 	
+	free(process);   
+}
+
+int main()
+{		
+  loop(); //Döngü çalıştırıldı ve işlem başlatıldı. 
+  return 0;
 }
